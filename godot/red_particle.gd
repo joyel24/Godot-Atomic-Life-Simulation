@@ -1,40 +1,54 @@
 #extends CharacterBody2D
 extends RigidBody2D
 
-var red_particle_mass = 10
-var particles_around = []
+const SCR_WIDTH = 1920
+const SCR_HIGH = 1080
 
-# Called when the node enters the scene tree for the first time.
+var red_particle_mass = 1
+var particles_arround = []
+var accel_coef = 1 #what ts is: accel_coef=g=9.81 for earth for ex
+var impulse_coef = 1000
+
 func _ready():
 	self.mass = red_particle_mass
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print(particles_around)
-	pass
+	self.apply_impulse(gravity_to_particles_arround())
+	stay_on_screen()
 
 
 func _on_area_2d_body_entered(body):
 	if body.name != self.name:
-		print("test")
-		particles_around.append(body)
+		particles_arround.append(body)
 	
 func _on_area_2d_body_exited(body):
-	particles_around.erase(body)
+	particles_arround.erase(body)
 
-	
-func draft_func(body):
+func gravity_to_1_particle(body):
 	var force = 0.0
-	var acceleration = 1
-	
-	if body.name != self.name:
+	if body != self:
 		var distance = position.distance_squared_to(body.position)
-		force = acceleration * self.mass * body.mass / distance
+		#print(distance)
+		force = accel_coef * self.mass * body.mass / distance
+		var vector = (body.position - position).normalized()
+		return force*vector
+
+func gravity_to_particles_arround():
+	var accel = Vector2.ZERO
+	for body in particles_arround:
+		if body != self:
+			var acc = gravity_to_1_particle(body)
+			accel += acc
+	return accel*impulse_coef
+
+func stay_on_screen():
+	if self.position.x > SCR_WIDTH:
+		self.position.x = 0
+	elif self.position.x < 0:
+		self.position.x = SCR_WIDTH
 		
-		#print(force)
-		#print(body.position - position)
-		#print(body.mass)
-
-
+	if self.position.y > SCR_HIGH:
+		self.position.y = 0
+	elif self.position.y < 0:
+		self.position.y = SCR_HIGH
