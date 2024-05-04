@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7w4y6pqxmqsg"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_eyn73"]
+[ext_resource type="PackedScene" uid="uid://cuoup4bgamjop" path="res://red_particle.tscn" id="2_0pj55"]
+
+[node name="world" type="Node2D"]
+script = ExtResource("1_eyn73")
+
+[node name="red_particle" parent="." instance=ExtResource("2_0pj55")]
+position = Vector2(427, 238)
+
+[node name="red_particle2" parent="." instance=ExtResource("2_0pj55")]
+position = Vector2(688, 397)
