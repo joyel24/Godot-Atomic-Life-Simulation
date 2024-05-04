@@ -10,4 +10,4 @@ script = ExtResource("1_eyn73")
 position = Vector2(427, 238)
 
 [node name="red_particle2" parent="." instance=ExtResource("2_0pj55")]
-position = Vector2(688, 397)
+position = Vector2(696, 325)
