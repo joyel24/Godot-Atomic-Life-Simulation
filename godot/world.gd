@@ -6,9 +6,9 @@ var blue_particle_scn = load("res://blue_particle.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for i in 50:
+	for i in 100:
 		new_particle(1)
-	for i in 50:
+	for i in 5:
 		new_particle(2)
 	pass # Replace with function body.
 
