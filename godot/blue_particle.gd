@@ -4,10 +4,10 @@ extends RigidBody2D
 const SCR_WIDTH = 1920
 const SCR_HIGH = 1080
 
-var blue_particle_mass = 50
+var blue_particle_mass = 500
 var particles_arround = []
 var accel_coef = 1 #what ts is: accel_coef=g=9.81 for earth for ex
-var impulse_coef = 1000
+var impulse_coef = 100
 
 
 func _ready():
