@@ -32,7 +32,7 @@ func gravity_to_1_particle(body):
 	var force = 0.0
 	if body != self:
 		var distance = position.distance_squared_to(body.position)
-		if distance < 200:
+		if distance < 500:
 			return Vector2(0,0)
 		#print(distance)
 		force = accel_coef * self.mass * body.mass / distance

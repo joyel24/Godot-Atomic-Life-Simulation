@@ -6,7 +6,7 @@ const SCR_HIGH = 1080
 
 var red_particle_mass = 0.1
 var particles_arround = []
-var accel_coef = 1 #what ts is: accel_coef=g=9.81 for earth for ex
+var accel_coef = 1
 var impulse_coef = 100
 
 func _ready():
@@ -29,7 +29,7 @@ func gravity_to_1_particle(body):
 	var force = 0.0
 	if body != self:
 		var distance = position.distance_squared_to(body.position)
-		if distance < 500:
+		if distance < 400:
 			return Vector2(0,0)
 		#print(distance)
 		force = accel_coef * self.mass * body.mass / distance
